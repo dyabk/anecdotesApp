@@ -11,17 +11,26 @@ const Line = (props) =>
 
 const Statistics = ({good, neutral, bad, all, average, positive}) => {
   
+  if (good < 1 && bad < 1 && neutral < 1) {
+    return (
+      <div>
+        <Header text="statistics" />
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+  
   return (
-    <div>
-      <Header text="statistics" />
+      <div>
+        <Header text="statistics" />
         <Line text="good" value={good} />
         <Line text="neutral" value={neutral} />
         <Line text="bad" value={bad} />
         <Line text="all" value={all} />
         <Line text="average" value={average} />
         <Line text="positive" value={positive*100 + " %"} />
-    </div>
-  )
+      </div>
+    )
 }
 
 const App = () => {
