@@ -26,8 +26,8 @@ const App = () => {
 
   const [selected, setSelected] = useState([0, -1])
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
-  console.log('selected state: ' + selected)
-  console.log('votes state: ' + votes)
+  console.log('selected state: ', selected)
+  console.log('votes state: ', votes)
 
   const max = Math.max(...votes)
   const index = votes.indexOf(max)
