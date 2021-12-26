@@ -12,6 +12,8 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
+  console.log('votes state: ' + votes)
 
   const generateRandom = () => {
     const result = Math.floor( Math.random() * anecdotes.length )
@@ -19,14 +21,24 @@ const App = () => {
       console.log('Re-doing')
       return generateRandom()
     }
-    console.log('Result = ' + result)
+    console.log('selected state: ' + result)
     return result
+  }
+
+  const vote = () => {
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    setVotes(newVotes)
   }
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <p><button onClick={() => setSelected(generateRandom)}>next anecdote</button></p>
+      <p>
+        {anecdotes[selected]}<br />
+        has {votes[selected]} votes<br />
+        <button onClick={() => vote()}>vote</button>
+        <button onClick={() => setSelected(generateRandom)}>next anecdote</button>
+      </p>
     </div>
   )
 }
